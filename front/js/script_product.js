@@ -28,12 +28,13 @@ fetch(`http://localhost:3000/api/products/${id}`)
 function uniqueproduct (product) {
     console.log(product);
 
-    /*let productName = document.getElementById('title');
-    productName.innerHTML = `${product.name}`; */
+    let productName = document.getElementsByTagName('title');
+    let nomProduit = productName[0];
+    nomProduit.innerHTML = `${product.name}`; 
 
     let productImg = document.getElementsByClassName('item__img');
-    let productImge = productImg[0];
-    productImge.innerHTML = `<img src=${product.imageUrl} alt=${product.altTxt}>`;
+    let productImage = productImg[0];
+    productImage.innerHTML = `<img src=${product.imageUrl} alt=${product.altTxt}>`;
 
     let productTitle = document.getElementById('title');
     productTitle.innerHTML = `${product.name}`;
