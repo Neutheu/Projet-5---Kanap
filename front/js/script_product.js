@@ -69,6 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
   let addButton = document.getElementById('addToCart');  
   console.log(addButton);  
   addButton.addEventListener('click', function() {  
+  
+    /*Récupération du panier stocké*/
+    let stockeCart = localStorage.getItem("obj");
+    cart = JSON.parse(stockeCart);
 
     /*création d'un objet avec les caractéristiques sélectionnées*/
     let addedProduct = {   
@@ -93,12 +97,12 @@ console.log(addedProduct);
 
 console.log(cart);
 
+    addButton.innerHTML = "Ajouté";       
+
     /*stockage du panier*/
     let stockedCart = JSON.stringify(cart);
     localStorage.setItem("obj",stockedCart);
-
-    addButton.innerHTML = "Ajouté";       
-
   });
 
+  
 });
