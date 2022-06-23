@@ -23,7 +23,7 @@
     .then(function(value) {
         console.log(value);
         const product = value;
-        uniqueproduct(product);
+        uniqueproduct(value);
     })
     .catch(function(err) {
     // Une erreur est survenue
