@@ -210,7 +210,11 @@ document.addEventListener("DOMContentLoaded", async function() {
         })
         .then(function(result) {
           if (result) {
+            localStorage.removeItem("obj");
             document.location.href=`../html/confirmation.html?orderId=${result.orderId}`
+          }
+          else {
+            alert("Veuillez remplir les champs demandés")
           }
         })   
     })

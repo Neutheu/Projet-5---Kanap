@@ -65,12 +65,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /*Récupération du panier stocké*/
     let stockeCart = localStorage.getItem("obj");
-    cart = JSON.parse(stockeCart);
+    if (stockeCart = "null") {
+      cart = []
+    }
+    else {
+      cart = JSON.parse(stockeCart);
+    }
 
     let selectedColor = document.getElementById('colors').options[document.getElementById('colors').selectedIndex].value;
     let selectedQuantity = parseInt(document.getElementById("quantity").value);
     // parseInt pour que la variable soit un number et qu'on puisse l'additionner plus bas car sinon deux produits avec une quantity de "1" donnaient "11" en s'additionnant car ce sont des strings.
-    if (selectedQuantity != 0 && selectedColor != '') {
+    if (selectedQuantity > 0 && selectedColor != '') {
 
       //création d'un objet avec les caractéristiques sélectionnées + les caractéristiques dont on aura besoin pour l'afficher dans la page panier
       
@@ -84,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (cart.length == 0) {
         cart.push(addedProduct);
+        alert("Votre produit a bien été ajouté au panier");
       }
 
       else {
@@ -91,15 +97,21 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i in cart) {
           if (addedProduct.selectedColor == cart[i].selectedColor && addedProduct.productId == cart[i].productId) {
             cart[i].selectedQuantity += addedProduct.selectedQuantity;
+            alert("Votre produit a bien été ajouté au panier");
             break;
           }
           else if (i == cart.length-1) {
             cart.push(addedProduct);
+            alert("Votre produit a bien été ajouté au panier");
           }
           else {}
         }
       }  
     }  
+
+    else {
+      alert("Veuillez sélectionner une couleur et une quantité positive")
+    }
 
     // stockage du panier
     let stockedCart = JSON.stringify(cart);
